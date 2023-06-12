@@ -1,0 +1,8 @@
+---
+- name: Create repo docker-hub
+  hosts: 
+    - srv
+  become: yes    
+  roles: 
+    - docker-hub
+    tags: docker-hub
