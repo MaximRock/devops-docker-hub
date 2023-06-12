@@ -6,9 +6,9 @@
 
 - name: Build image using cache source
   community.docker.docker_image:
-    name: "{{ name_repo_docker_hub }}:{{ version_repo_docker_hub }}"
+    name: testmaxdev/jenkins-image:v01
     build:
-      path: "{{ path_build }}"
+      path: /var/lib/jenkins/workspace/docker-hub/app
     source: build    
 
 - name: Log into DockerHub
