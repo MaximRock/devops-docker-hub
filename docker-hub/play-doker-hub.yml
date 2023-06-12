@@ -4,5 +4,6 @@
   hosts: 
     - srv-1
   become: yes    
-  roles: docker-hub
+  roles: 
+    - docker-hub
 
