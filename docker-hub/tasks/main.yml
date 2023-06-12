@@ -8,18 +8,18 @@
   community.docker.docker_image:
     name: "{{ name_repo_docker_hub }}:{{ version_repo_docker_hub }}"
     build:
-      path: {{ path_build }}
+      path: "{{ path_build }}"
     source: build    
 
 - name: Log into DockerHub
   community.docker.docker_login:
-    username: {{ username }}
-    password: {{ password }}
+    username: "{{ username }}"
+    password: "{{ password }}"
 
 - name: Tag and push to docker hub
   community.docker.docker_image:
-    name: {{ name_repo_docker_hub }}
-    repository: {{ name_repo_docker_hub }}
-    tag: {{ version_repo_docker_hub }}
+    name: "{{ name_repo_docker_hub }}"
+    repository: "{{ name_repo_docker_hub }}"
+    tag: "{{ version_repo_docker_hub }}"
     push: true
     source: local
