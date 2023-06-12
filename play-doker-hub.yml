@@ -2,7 +2,7 @@
 
 - name: Create repo docker-hub
   hosts: 
-    - jenkins-job
+    - srv-1
   become: yes    
   roles: 
     - docker-hub
