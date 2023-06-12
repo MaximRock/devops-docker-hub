@@ -1,4 +1,5 @@
 ---
+
 - name: Create repo docker-hub
   hosts: 
     - srv-1
