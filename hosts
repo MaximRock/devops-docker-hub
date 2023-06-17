@@ -1,2 +1,2 @@
 [srv-1]
-srv-1 ansible_host=admin@62.84.120.165 ansible_user=admin
+srv-1 ansible_host=localhost ansible_user=admin
