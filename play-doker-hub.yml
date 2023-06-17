@@ -5,5 +5,5 @@
     - srv-1
   become: yes    
   roles: 
-    - docker-hub
+    - docker-hub_push
 
