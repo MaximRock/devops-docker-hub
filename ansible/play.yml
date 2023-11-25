@@ -1,5 +1,5 @@
 - name: Build docker image | Push DockerHub 
-  hosts: localhost
+  hosts: srv
   become: true      
   roles:
     - role: docker-hub
