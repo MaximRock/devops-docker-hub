@@ -3,6 +3,6 @@
 
 name_repo_docker_hub: "testmaxdev/django-postgresql-image"
 version_repo_docker_hub: "1.0.1"
-path_build: "/var/lib/jenkins/workspace/devops-docker-hub"
+path_build: "/var/lib/jenkins/workspace/docker-hub"
 username: "testmaxdev"
 password: "zpfybvf.cmA!"
