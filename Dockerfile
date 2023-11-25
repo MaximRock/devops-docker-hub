@@ -1,26 +1,28 @@
-FROM python:3.9-alpine
+FROM python:3.9-slim as builder
+ENV PYTHONUNBUFFERED=1
 
-ENV PYTHONUNBUFFERED 1
+RUN pip install -U pip setuptools wheel
 
-COPY ./requirements.txt /requirements.txt
+WORKDIR /wheels
+COPY requirements.txt /requirements.txt
+RUN pip wheel -r /requirements.txt
 
-# Install postgres client
-RUN apk add --update --no-cache postgresql-client
 
-# Install individual dependencies
-# so that we could avoid install extra packages
-RUN apk add --update --no-cache --virtual .tmp-build-deps \
-	gcc libc-dev linux-headers postgresql-dev
-RUN pip install -r /requirements.txt
+FROM python:3.9-slim
+ENV PYTHONUNBUFFERED=1
 
-# Remove dependencies
-RUN apk del .tmp-build-deps
+COPY --from=builder /wheels /wheels
+RUN pip install -U pip setuptools wheel \
+      && pip install /wheels/* \
+      && rm -rf /wheels \
+      && rm -rf /root/.cache/pip/*
 
-RUN mkdir /app
-WORKDIR /app
-COPY ./app /app
+WORKDIR /code
+COPY . .
 
-# [Security] Limit the scope of user who run the docker image
-RUN adduser -D user
+EXPOSE 8000
+ENV PYTHONPATH /code
 
-USER user
+RUN python manage.py collectstatic --noinput
+
+CMD ["gunicorn", "-c", "docker/gunicorn.py", "appdjango.wsgi:application"]

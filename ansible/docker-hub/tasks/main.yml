@@ -1,25 +1,36 @@
 ---
+# tasks file for docker-hub
 
-- name: Install python
+- name: Install required system packages
+  ansible.builtin.apt:
+    pkg:
+      - python3-pip
+    state: latest
+    update_cache: true
+
+- name: Install python-jenkins and docker-py
   ansible.builtin.pip:
-    name: docker-py
+    name: 
+      - python-jenkins
+      - docker-py
 
-- name: Build image using cache source
+- name: Build docker image
   community.docker.docker_image:
     name: "{{ name_repo_docker_hub }}:{{ version_repo_docker_hub }}"
     build:
       path: "{{ path_build }}"
-    source: build    
+    source: build
 
-- name: Log into DockerHub
+- name: Log into DockerHub 
   community.docker.docker_login:
     username: "{{ username }}"
     password: "{{ password }}"
 
 - name: Tag and push to docker hub
   community.docker.docker_image:
-    name: "{{ name_repo_docker_hub }}"
+    name: "{{ name_repo_docker_hub }}" 
     repository: "{{ name_repo_docker_hub }}"
     tag: "{{ version_repo_docker_hub }}"
     push: true
     source: local
+           

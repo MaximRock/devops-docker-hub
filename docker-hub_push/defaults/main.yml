@@ -1,7 +1,0 @@
----
-
-name_repo_docker_hub: "testmaxdev/jenkins-image"
-version_repo_docker_hub: "v01"
-path_build: "/var/lib/jenkins/workspace/docker-hub/app"
-username: "testmaxdev"
-password: "zpfybvf.cmA!"

@@ -1,2 +1,0 @@
-[srv-1]
-srv-1 ansible_host=localhost ansible_user=admin

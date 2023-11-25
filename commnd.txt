@@ -1,0 +1,8 @@
+Вход в pod
+kubectl -n test-1 exec -it appdjango-86547f68c9-ntpsx -- bash
+
+python manage.py createsuperuser
+
+admin 123
+
+value: postgresql://postgres:gYwOKJZaR0do8TUUgPS9@pg:5432/postgres

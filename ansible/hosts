@@ -1,0 +1,2 @@
+[srv]
+srv ansible_host=localhost
