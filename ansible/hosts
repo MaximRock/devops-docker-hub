@@ -1,2 +1,2 @@
 [srv]
-srv ansible_host=localhost
+srv ansible_host=localhost ansible_user=vagrant
